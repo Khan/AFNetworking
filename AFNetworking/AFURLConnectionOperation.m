@@ -300,7 +300,7 @@ static BOOL AFSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
         _outputStream = nil;
     }
     
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && !TARGET_OS_TV
     if (_backgroundTaskIdentifier) {
         [[UIApplication sharedApplication] endBackgroundTask:_backgroundTaskIdentifier];
         _backgroundTaskIdentifier = UIBackgroundTaskInvalid;
@@ -361,7 +361,7 @@ static BOOL AFSecKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
     [self.lock unlock];
 }
 
-#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED) && !TARGET_OS_TV
 - (void)setShouldExecuteAsBackgroundTaskWithExpirationHandler:(void (^)(void))handler {
     [self.lock lock];
     if (!self.backgroundTaskIdentifier) {
